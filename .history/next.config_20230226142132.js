@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images:{
-    domains:["upload.wikimedia.org","cdn.shopify.com"]
+    domains:["encrypted-tbn0.gstatic.com"]
   }
 }
 

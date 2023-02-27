@@ -11,18 +11,14 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex min-h-screen max-w-7xl mx-auto ">
+      {/*Sidebar*/}
+      <Sidebar/>
 
-        {/*Sidebar*/}
-        <Sidebar/>
+      {/*Feed*/}
 
-        {/*Feed*/}
+      {/*Widgets*/}
 
-        {/*Widgets*/}
-
-        {/*Modal*/}
-
-      </main>
+      {/*Modal*/}
 
     </div>
   )
