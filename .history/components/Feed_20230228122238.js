@@ -1,6 +1,5 @@
 import { SparklesIcon } from "@heroicons/react/outline";
 import Input from "./Input";
-import Post from "./Post";
 
 export default function Feed() {
   const posts =[
@@ -32,9 +31,6 @@ export default function Feed() {
         </div>
       </div>
       <Input/>
-      {posts.map((post)=>(
-        <Post key={post.id} post={post}/>
-      ))}
     </div>
   )
 }
