@@ -20,7 +20,7 @@ export default function Widgets({newsResults,randomUsersResults}) {
             ))}
             <button className="ml-3 p-1 text-blue-300 text-sm hover:text-blue-400" onClick={()=>setArticleNum(articleNum + 3)}>Show more</button>
         </div>
-        <div className="sticky top-16 text-gray-700 space-y-3 bg-gray-100 pt-2 rounded-xl w-[90%] xl:w-[75%] ">
+        <div className="text-gray-700 space-y-3 bg-gray-100 pt-2 rounded-xl w-[90%] xl:w-[75%] ">
             <h4 className="font-bold text-xl px-4">Who to follow</h4>
 
             {randomUsersResults.slice(0,randomUserNum).map((randomUser)=>(
@@ -35,7 +35,7 @@ export default function Widgets({newsResults,randomUsersResults}) {
 
             ))}
 
-            <button onClick={()=>setRandomUserNum(randomUserNum + 3)}className="text-blue-300 pl-4 pb-3 hover:text-blue-400 text-sm">Show more</button>
+            <button className="text-blue-300 pl-4 pb-3 hover:text-blue-400 text-sm">Show more</button>
         </div>
     </div>
   )

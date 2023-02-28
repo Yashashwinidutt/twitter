@@ -4,7 +4,6 @@ import {useState} from "react";
 
 export default function Widgets({newsResults,randomUsersResults}) {
     const[articleNum,setArticleNum]=useState(3);
-    const[randomUserNum,setRandomUserNum]=useState(3);
   return (
     <div className="xl:w-[600px] hidden lg:inline ml-8 space-y-5">
         <div className="w-[90%] xl:w-[75%] sticky top-0  bg-white py-1.5 z-50">
@@ -20,10 +19,10 @@ export default function Widgets({newsResults,randomUsersResults}) {
             ))}
             <button className="ml-3 p-1 text-blue-300 text-sm hover:text-blue-400" onClick={()=>setArticleNum(articleNum + 3)}>Show more</button>
         </div>
-        <div className="sticky top-16 text-gray-700 space-y-3 bg-gray-100 pt-2 rounded-xl w-[90%] xl:w-[75%] ">
+        <div className="text-gray-700 space-y-3 bg-gray-100 pt-2 rounded-xl w-[90%] xl:w-[75%] ">
             <h4 className="font-bold text-xl px-4">Who to follow</h4>
 
-            {randomUsersResults.slice(0,randomUserNum).map((randomUser)=>(
+            {randomUsersResults.map((randomUser)=>(
                 <div key={randomUser.login.username} className="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-200">
                     <img className="rounded-full" width={40} src={randomUser.picture.thumbnail } alt="image"/>
                     <div className="truncate ml-4 leading-5">
@@ -35,7 +34,7 @@ export default function Widgets({newsResults,randomUsersResults}) {
 
             ))}
 
-            <button onClick={()=>setRandomUserNum(randomUserNum + 3)}className="text-blue-300 pl-4 pb-3 hover:text-blue-400 text-sm">Show more</button>
+            <button className="text-blue-300 pl-4 pb-3 hover:text-blue-400 text-sm">Show more</button>
         </div>
     </div>
   )
