@@ -3,7 +3,7 @@ import Feed from '../components/Feed'
 import Sidebar from '../components/Sidebar'
 import Widgets from '../components/Widgets'
 
-export default function Home({newsResults}) {
+export default function Home(newsResults) {
   return (
     <div>
       <Head>
@@ -22,7 +22,7 @@ export default function Home({newsResults}) {
         <Feed/>
 
         {/*Widgets*/}
-        <Widgets newsResults={newsResults.articles}/>
+        <Widgets newsResults={newsResults.article}/>
 
         {/*Modal*/}
 
@@ -38,6 +38,6 @@ export async function getServerSideProps(){
   return{
     props:{
       newsResults,
-    }
-  }
+    },
+  } 
 }

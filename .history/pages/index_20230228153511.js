@@ -22,7 +22,7 @@ export default function Home({newsResults}) {
         <Feed/>
 
         {/*Widgets*/}
-        <Widgets newsResults={newsResults.articles}/>
+        <Widgets newsResults={newsResults.article}/>
 
         {/*Modal*/}
 
@@ -38,6 +38,6 @@ export async function getServerSideProps(){
   return{
     props:{
       newsResults,
-    }
-  }
+    },
+  } 
 }

@@ -34,7 +34,7 @@ export default function Home({newsResults}) {
 //https://saurav.tech/NewsAPI/top-headlines/category/business/in.json
 
 export async function getServerSideProps(){
-  const newsResults = await fetch("https://saurav.tech/NewsAPI/top-headlines/category/health/in.json").then((res)=>res.json());
+  const newsResults = await fetch("https://saurav.tech/NewsAPI/top-headlines/category/business/us.json").then((res)=>res.json());
   return{
     props:{
       newsResults,

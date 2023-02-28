@@ -17,7 +17,7 @@ export default function Widgets({newsResults}) {
             {newsResults.slice(0,articleNum).map((article)=> (
             <News key={article.title} article={article}/>
             ))}
-            <button className="ml-3 p-1 text-gray-500 text-sm " onClick={()=>setArticleNum(articleNum + 3)}>Show more</button>
+            <button className="ml-3 p-1 text-gray-500" onClick={()=>setArticleNum(articleNum + 3)}>Show more</button>
         </div>
 
     </div>
