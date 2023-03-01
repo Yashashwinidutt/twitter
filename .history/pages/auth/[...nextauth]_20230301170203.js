@@ -1,6 +1,5 @@
 import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
-
 export default NextAuth({
   // Configure one or more authentication providers
   providers: [
@@ -10,8 +9,8 @@ export default NextAuth({
     }),
     // ...add more providers here
   ],
+
   pages:{
-    signin:"/auth/signin"
+    signin: "/auth/signin"
   }
 })
-
