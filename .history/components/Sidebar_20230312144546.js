@@ -9,7 +9,7 @@ import {ClipboardIcon} from "@heroicons/react/outline"
 import {UserIcon} from "@heroicons/react/outline"
 import {DotsCircleHorizontalIcon} from "@heroicons/react/outline"
 import {DotsHorizontalIcon} from "@heroicons/react/outline"
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 export default function Sidebar() {
   const{data:session} = useSession();
   return (
@@ -44,18 +44,17 @@ export default function Sidebar() {
         {/*Mini-Profile*/}
         <div className="hoverEffecttext-gray-700 flex items-center justify-center xl:justify-start mt-auto">
           {/* eslint-disable-next-line @next/next/no-img-element*/}
-          <img onClick={signOut} src={session.user.image} alt="error" className="h-10 w-10 rounded-full xl:mr-2"/>
+          <img src="https://cdn.shopify.com/s/files/1/0467/5878/9279/products/2_da0f83d1-d83f-4209-836e-306ddbbd7845.jpg" alt="error" className="h-10 w-10 rounded-full xl:mr-2"/>
           <div className="leading-5 hidden xl:inline">
-                <h4 className="font-bold">{session.user.name}</h4>
-                <p className="text-gray-500">@{session.user.username}</p>
+                <h4 className="font-bold">Yashashwini Dutt Dubey</h4>
+                <p className="text-gray-500">@yashashwinidutt</p>
           </div>
           <DotsHorizontalIcon className="h-5 xl:ml-8 hidden xl:inline"/>
         </div>
           </>
           
         ) :(
-          <button onClick={signIn} className="bg-blue-400 text-white rounded-full w-36 h-12 font-bold shadow-md hover:brightness-95 text-lg hidden xl:inline 
-          ">Sign in</button>
+          <button>Sign in</button>
         )}
 
         

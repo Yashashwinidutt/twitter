@@ -1,5 +1,5 @@
 import { EmojiHappyIcon, PhoneOutgoingIcon } from "@heroicons/react/outline";
-import { useSession,signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 export default function Input() {
   const{data:session} = useSession();
@@ -10,8 +10,7 @@ export default function Input() {
 
 <div className="flex border-b border-gray-200 p-3 space-x-3">
 
-<img onClick={signOut}
-width="50" src="https://cdn.shopify.com/s/files/1/0467/5878/9279/products/2_da0f83d1-d83f-4209-836e-306ddbbd7845.jpg" alt="error" className="h-11 w-11 rounded-full cursor-pointer hover:brightness-95"/>
+<img width="50" src="https://cdn.shopify.com/s/files/1/0467/5878/9279/products/2_da0f83d1-d83f-4209-836e-306ddbbd7845.jpg" alt="error" className="h-11 w-11 rounded-full cursor-pointer hover:brightness-95"/>
 <div className="w-full divide-y divide-gray-200">
   <div className="">
       <textarea rows="2" className="w-full border-none focus:ring-0 text-lg placeholder-gray-700 tracking-wide min-h-[50px] text-gray-700" placeholder="What's happening?"></textarea>

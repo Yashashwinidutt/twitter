@@ -44,7 +44,7 @@ export default function Sidebar() {
         {/*Mini-Profile*/}
         <div className="hoverEffecttext-gray-700 flex items-center justify-center xl:justify-start mt-auto">
           {/* eslint-disable-next-line @next/next/no-img-element*/}
-          <img onClick={signOut} src={session.user.image} alt="error" className="h-10 w-10 rounded-full xl:mr-2"/>
+          <img onClick={signOut} src="https://cdn.shopify.com/s/files/1/0467/5878/9279/products/2_da0f83d1-d83f-4209-836e-306ddbbd7845.jpg" alt="error" className="h-10 w-10 rounded-full xl:mr-2"/>
           <div className="leading-5 hidden xl:inline">
                 <h4 className="font-bold">{session.user.name}</h4>
                 <p className="text-gray-500">@{session.user.username}</p>
