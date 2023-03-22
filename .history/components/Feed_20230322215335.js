@@ -6,16 +6,10 @@ import Input from "./Input";
 import Post from "./Post";
 
 export default function Feed() {
-  const [posts,setPosts] = useState([])
-  useEffect(()=>onSnapshot(
-        query(collection(db, "posts"),
-        orderBy("timestamp", "desc")
-      ),
-    (snapshot)=>{
-      setPosts(snapshot.docs);
-    }
-    ),[]);
-
+  const[posts,setPosts] = useState([])
+  useEffect(()=>{
+    const unsubscribe = onSnapshot(query(collection(db, "posts")), orderBy("timestamp", "desc")), (snapshot)=>{setPosts(snapshot.docs)}
+  }, [])
   return (
     <div className="xl:ml-[370px] border-l border-r border-gray-200 xl:min-w-[576px] sm:ml-[73px] flex-grow max-w-xl">
       <div className="flex py-2 px-3 sticky top-0 z-50 bg-white border-b border-gray-200">

@@ -1,5 +1,5 @@
 import { ChartBarIcon, ChatIcon, DotsHorizontalIcon, HeartIcon, ShareIcon, TrashIcon } from "@heroicons/react/outline";
-import Moment from "react-moment";
+import Moment from 'react-moment';
 export default function Post({ post }) {
   return (
     <div className="flex p-3 cursor-pointer border-b border-gray-200">
@@ -16,7 +16,7 @@ export default function Post({ post }) {
           <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline">{post.data().name}</h4>
           <span className="text-sm sm:text-[15px]">@{post.data().username} - </span>
           <span className="text-sm sm:text-[15px] hover:underline">
-            <Moment fromNow>{post?.timestamp?.toDate()}</Moment>
+            <Moment fromNow>{post.timestamp.toDate()}</Moment>
           </span>
         </div>
         {/*dot icon*/}

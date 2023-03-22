@@ -15,8 +15,8 @@ export default function Post({ post }) {
         <div className="flex items-center space-x-1 whitespace-nowrap">
           <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline">{post.data().name}</h4>
           <span className="text-sm sm:text-[15px]">@{post.data().username} - </span>
-          <span className="text-sm sm:text-[15px] hover:underline">
-            <Moment fromNow>{post?.timestamp?.toDate()}</Moment>
+          <span className="text-sm sm:text-[15px] hover:underline">{post.timestamp}
+            <Moment fromNow>{post.timestamp.toDate()</Moment>
           </span>
         </div>
         {/*dot icon*/}
