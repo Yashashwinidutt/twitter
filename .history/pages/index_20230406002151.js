@@ -1,9 +1,10 @@
 import Head from 'next/head'
+import CommentModal from '../components/CommentModal'
 import Feed from '../components/Feed'
 import Sidebar from '../components/Sidebar'
 import Widgets from '../components/Widgets'
 
-export default function Home() {
+export default function Home({newsResults,randomUsersResults}) {
   return (
     <div>
       <Head>
@@ -22,9 +23,10 @@ export default function Home() {
         <Feed/>
 
         {/*Widgets*/}
-        <Widgets/>
+        <Widgets newsResults={newsResults.articles} randomUsersResults={randomUsersResults.results}/>
 
         {/*Modal*/}
+        <CommentModal></CommentModal>
 
       </main>
 
@@ -33,11 +35,14 @@ export default function Home() {
 }
 //https://saurav.tech/NewsAPI/top-headlines/category/business/in.json
 
-expost async function getServerSideProps(){
-  const newsResults = await fetch("https://saurav.tech/NewsAPI/top-headlines/category/health/in.json").then(res)=>res.json());
+export async function getServerSideProps(){
+  const newsResults = await fetch("https://saurav.tech/NewsAPI/top-headlines/category/health/in.json").then((res)=>res.json());
+
+  //Who to follow section
+  const randomUsersResults = await fetch("https://randomuser.me/api/?results=30&inc=name,login,picture").then((res)=>res.json());
   return{
     props:{
-      newsResults,
+      newsResults,randomUsersResults
     }
-  } 
+  }
 }
