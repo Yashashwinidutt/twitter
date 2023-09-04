@@ -38,19 +38,18 @@ export default function CommentModal() {
 
                         </div>
                     </div>
-                    <div className="p-1 flex items-left space-x-1 relative items-center">
+                    <div className="p-2 flex items-center space-x-1 relative">
                         <span className="w-0.5 h-full z-[-1] absolute left-8 top-11 bg-gray-300"/>
                         {/*user image*/}
                         <img className="h-11 w-11 rounded-full mr-4" src={post?.data()?.userImg} alt="user-image" />
                         <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline">{post?.data()?.name}</h4>
-                        <span className="text-sm sm:text-[15px]">@{post?.data()?.username}-</span>
+                        <span className="text-sm sm:text-[15px]">@{post?.data()?.username} - </span>
                         <span className="text-sm sm:text-[15px] hover:underline">
                             <Moment fromNow>{post?.data()?.timestamp?.toDate()}</Moment>
                         </span>
                     </div>
-                    <p className="text-grey-500 text-[15px] sm:text-[16px] ml-14 mb-2">{post?.data()?.text}</p>
 
-                    <div className="flex p-3 space-x-3">
+                    <div className="flex border-b border-gray-200 p-3 space-x-3">
 
                     <img
                     width="50" src={session.user.image} alt="error" className="h-11 w-11 rounded-full cursor-pointer hover:brightness-95"/>

@@ -21,10 +21,6 @@ export default function CommentModal() {
         });
     }, [postID, db]);
 
-    function sendComment(){
-
-    }
-
   return (
     <div>
         {open && (
@@ -38,37 +34,39 @@ export default function CommentModal() {
 
                         </div>
                     </div>
-                    <div className="p-1 flex items-left space-x-1 relative items-center">
+                    <div className="p-2 flex items-center space-x-1 relative">
                         <span className="w-0.5 h-full z-[-1] absolute left-8 top-11 bg-gray-300"/>
                         {/*user image*/}
                         <img className="h-11 w-11 rounded-full mr-4" src={post?.data()?.userImg} alt="user-image" />
                         <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline">{post?.data()?.name}</h4>
-                        <span className="text-sm sm:text-[15px]">@{post?.data()?.username}-</span>
+                        <span className="text-sm sm:text-[15px]">@{post?.data()?.username} - </span>
                         <span className="text-sm sm:text-[15px] hover:underline">
                             <Moment fromNow>{post?.data()?.timestamp?.toDate()}</Moment>
                         </span>
                     </div>
-                    <p className="text-grey-500 text-[15px] sm:text-[16px] ml-14 mb-2">{post?.data()?.text}</p>
 
-                    <div className="flex p-3 space-x-3">
+                    <div className="flex border-b border-gray-200 p-3 space-x-3">
 
                     <img
                     width="50" src={session.user.image} alt="error" className="h-11 w-11 rounded-full cursor-pointer hover:brightness-95"/>
                     <div className="w-full divide-y divide-gray-200">
                     <div className="">
-                        <textarea rows="2" className="w-full border-none focus:ring-0 text-lg placeholder-gray-700 tracking-wide min-h-[50px] text-gray-700" placeholder="Tweet your reply" value={input}
+                        <textarea rows="2" className="w-full border-none focus:ring-0 text-lg placeholder-gray-700 tracking-wide min-h-[50px] text-gray-700" placeholder="What's happening?" value={input}
                         onChange={(e)=>setInput(e.target.value)}></textarea>
                     </div>
+                    {!loading && (
                             <div className="flex items-center justify-between pt-2.5">
                             <div className="flex">
-                            <div /*onClick={()=>filePickerRef.current.click()}*/>
+                            <div onClick={()=>filePickerRef.current.click()}>
                                 <PhotographIcon className="h-10 w-10 hoverEffect p-2 text-sky-500 hover:bg-sky-100"/>
-                                {/*<input type="file" hidden ref={filePickerRef} onChange={addImageToPost} />*/}
+                                <input type="file" hidden ref={filePickerRef} onChange={addImageToPost} />
                             </div>
+                            
                             <EmojiHappyIcon className="h-10 w-10 hoverEffect p-2 text-sky-500 hover:bg-sky-100"/>
                             </div>
-                            <button onClick={sendComment} disabled={!input.trim()} className="bg-blue-400 text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50">Reply</button>
+                            <button onClick={sendPost} disabled={!input.trim()} className="bg-blue-400 text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50">Tweet</button>
                         </div>
+                    )}
 
 </div>
 </div>

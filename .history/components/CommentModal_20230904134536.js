@@ -38,7 +38,7 @@ export default function CommentModal() {
 
                         </div>
                     </div>
-                    <div className="p-1 flex items-left space-x-1 relative items-center">
+                    <div className="p-1 flex items-left space-x-1 relative">
                         <span className="w-0.5 h-full z-[-1] absolute left-8 top-11 bg-gray-300"/>
                         {/*user image*/}
                         <img className="h-11 w-11 rounded-full mr-4" src={post?.data()?.userImg} alt="user-image" />
@@ -48,7 +48,6 @@ export default function CommentModal() {
                             <Moment fromNow>{post?.data()?.timestamp?.toDate()}</Moment>
                         </span>
                     </div>
-                    <p className="text-grey-500 text-[15px] sm:text-[16px] ml-14 mb-2">{post?.data()?.text}</p>
 
                     <div className="flex p-3 space-x-3">
 

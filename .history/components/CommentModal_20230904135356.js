@@ -48,7 +48,7 @@ export default function CommentModal() {
                             <Moment fromNow>{post?.data()?.timestamp?.toDate()}</Moment>
                         </span>
                     </div>
-                    <p className="text-grey-500 text-[15px] sm:text-[16px] ml-14 mb-2">{post?.data()?.text}</p>
+                    <p className="text-grey-500 text-[15px] sm:text-[16px] ml-16 mb-2">{post?.data()?.text}</p>
 
                     <div className="flex p-3 space-x-3">
 

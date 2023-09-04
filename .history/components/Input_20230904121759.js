@@ -67,7 +67,7 @@ width="50" src={session.user.image} alt="error" className="h-11 w-11 rounded-ful
    {selectedFile && (
     <div className="relative">
       <XIcon onClick={()=> setSelectedFile(null)} className="h-7 text-black absolute cursor-pointer shadow-md border-white m-1 rounded-full border"/>
-      <img src={selectedFile} alt="error" className={`${loading && "animate-pulse"}`}/> 
+      <img src={selectedFile} className={`${loading && "animate-pulse"}`}/> 
 
     </div>
    )}
@@ -78,11 +78,13 @@ width="50" src={session.user.image} alt="error" className="h-11 w-11 rounded-ful
             <PhotographIcon className="h-10 w-10 hoverEffect p-2 text-sky-500 hover:bg-sky-100"/>
             <input type="file" hidden ref={filePickerRef} onChange={addImageToPost} />
           </div>
+          
           <EmojiHappyIcon className="h-10 w-10 hoverEffect p-2 text-sky-500 hover:bg-sky-100"/>
         </div>
         <button onClick={sendPost} disabled={!input.trim()} className="bg-blue-400 text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50">Tweet</button>
     </div>
    )}
+
 </div>
 </div>
 
