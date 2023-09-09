@@ -14,10 +14,10 @@ import { postIDState } from "../atom/modalAtom";
 export default function Post({ post, id }) {
   const { data: session} = useSession();
   const [likes, setLikes] = useState([]);
-  const [comments, setComments] = useState([]);
   const [hasLiked, setHasLiked] = useState(false);
   const [open, setOpen] = useRecoilState(modalState);
   const [postID, setPostID] = useRecoilState(postIDState);
+
 
   useEffect(()=>{
       const unsubscribe = onSnapshot(
@@ -25,13 +25,6 @@ export default function Post({ post, id }) {
         setLikes(snapshot.docs)
       );
   },[db]);
-
-  useEffect(() => {
-    const unsubscribe = onSnapshot(
-      collection(db, "posts", id, "comments"),
-      (snapshot) => setComments(snapshot.docs)
-    );
-  }, [db]);
 
   useEffect(()=>{
       setHasLiked(likes.findIndex((like)=>like.id==session?.user.uid) !== -1)
@@ -64,7 +57,7 @@ export default function Post({ post, id }) {
     <img className="h-11 w-11 rounded-full mr-4" src={post?.data()?.userImg} alt="user-image" />
 
     {/*right side*/}
-    <div className="flex-1">
+    <div className="">
 
       {/*Header*/}
       <div className="flex items-center justify-between">
@@ -91,8 +84,7 @@ export default function Post({ post, id }) {
 
       {/*icons*/}
       <div className="flex justify-between text-gray-500 p-2">
-      <div className="flex items-center select-none">
-        {/*chat button*/}
+        {/*like button*/}
         <ChatIcon onClick={()=> {
           if(!session){
             signIn();
@@ -102,11 +94,6 @@ export default function Post({ post, id }) {
           }
         }}
           className="h-9 w-9 hoverEffect p-2 hover:text-sky-500 hover:bg-sky-100"/>
-
-{comments.length > 0 && (
-              <span className="text-sm">{comments.length}</span>
-            )}
-          </div>
 
         {session?.user.uid === post?.data().id && (
             <TrashIcon onClick={deletePost} className="h-9 w-9 hoverEffect p-2 hover:text-red-600 hover:bg-red-100"/> 

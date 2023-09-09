@@ -42,7 +42,7 @@ export default function Sidebar() {
         ">Tweet</button>
 
         {/*Mini-Profile*/}
-        <div className="hoverEffecttext-gray-700 flex items-center justify-center xl:justify-start mt-3">
+        <div className="hoverEffecttext-gray-700 flex items-center justify-center xl:justify-start mt-2">
           {/* eslint-disable-next-line @next/next/no-img-element*/}
           <img onClick={signOut} src={session.user.image} alt="error" className="h-10 w-10 rounded-full xl:mr-2"/>
           <div className="leading-5 hidden xl:inline">

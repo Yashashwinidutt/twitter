@@ -5,7 +5,7 @@ import Modal from "react-modal";
 import { EmojiHappyIcon, PhotographIcon, XIcon } from "@heroicons/react/outline";
 import { useEffect, useState } from "react";
 import { db } from "../firebase";
-import { addDoc, collection, doc, onSnapshot, serverTimestamp } from "firebase/firestore";
+import { addDoc, doc, onSnapshot } from "firebase/firestore";
 import Moment from "react-moment";
 import {useSession} from "next-auth/react";
 import { router, useRouter } from "next/router";
@@ -14,7 +14,6 @@ export default function CommentModal() {
     const [postID] = useRecoilState(postIDState);
     const [post,setPost]= useState({});
     const {data:session} =useSession();
-    const router = useRouter();
     const [input, setInput] = useState("");
 
     useEffect(()=>{

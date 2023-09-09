@@ -91,8 +91,7 @@ export default function Post({ post, id }) {
 
       {/*icons*/}
       <div className="flex justify-between text-gray-500 p-2">
-      <div className="flex items-center select-none">
-        {/*chat button*/}
+        {/*like button*/}
         <ChatIcon onClick={()=> {
           if(!session){
             signIn();

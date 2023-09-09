@@ -14,7 +14,6 @@ export default function CommentModal() {
     const [postID] = useRecoilState(postIDState);
     const [post,setPost]= useState({});
     const {data:session} =useSession();
-    const router = useRouter();
     const [input, setInput] = useState("");
 
     useEffect(()=>{
