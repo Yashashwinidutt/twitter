@@ -91,7 +91,7 @@ export default function Post({comment, commentId, originalPostId }) {
 
           </div>
 
-        {session?.user.uid === comment?.userId && (
+        {session?.user.uid === comment?.id && (
             <TrashIcon onClick={deleteComment} className="h-9 w-9 hoverEffect p-2 hover:text-red-600 hover:bg-red-100"/> 
         )}
         

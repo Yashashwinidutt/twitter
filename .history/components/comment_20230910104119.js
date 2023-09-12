@@ -1,3 +1,8 @@
+export default function Comment({comment, id}) {
+  return (
+    <div>{comment.comment}</div>
+  )
+}
 import { ChartBarIcon, ChatIcon, DotsHorizontalIcon, HeartIcon, ShareIcon, TrashIcon } from "@heroicons/react/outline";
 import { HeartIcon as HeartIconFilled } from "@heroicons/react/solid";
 import Moment from "react-moment";
@@ -11,7 +16,7 @@ import { useRecoilState } from "recoil";
 import { modalState } from "../atom/modalAtom";
 import { postIDState } from "../atom/modalAtom";
 
-export default function Post({comment, commentId, originalPostId }) {
+export default function Post({comment, commentId, oroginalPostId }) {
   const { data: session} = useSession();
   const [likes, setLikes] = useState([]);
   const [hasLiked, setHasLiked] = useState(false);
@@ -20,37 +25,47 @@ export default function Post({comment, commentId, originalPostId }) {
 
   useEffect(()=>{
       const unsubscribe = onSnapshot(
-        collection(db,"posts",originalPostId,"comments",commentId,"likes"),
-        (snapshot)=> setLikes(snapshot.docs)
+        collection(db,"posts",originalPostId,"comments",commentId,"likes"),(snapshot)=>
+        setLikes(snapshot.docs)
       );
-  },[db, originalPostId, commentId]);
+  },[db]);
+
+  useEffect(() => {
+    const unsubscribe = onSnapshot(
+      collection(db, "posts", id, "comments"),
+      (snapshot) => setComments(snapshot.docs)
+    );
+  }, [db]);
 
   useEffect(()=>{
       setHasLiked(likes.findIndex((like)=>like.id==session?.user.uid) !== -1)
   },[likes])
 
-  async function likeComment(){
+  async function likePost(){
     if(session){
       if(hasLiked){
-        await deleteDoc(doc(db,"posts",originalPostId,"comments",commentId,"likes",session?.user.uid))
+        await deleteDoc(doc(db,"posts",id,"likes",session?.user.uid))
     }else{
-        await setDoc(doc(db,"posts",originalPostId,"comments",commentId,"likes",session?.user.uid),{username:session.user.username});
+        await setDoc(doc(db,"posts",id,"likes",session?.user.uid),{username:session.user.username});
     }
     }else{
       signIn();
     }
   }
 
-  async function deleteComment(){
-    if(window.confirm('Are you sure you want to delete this comment?')){
-      deleteDoc(doc(db,"posts",oroginalPostId,"comments",commentId))
+  async function deletePost(){
+    if(window.confirm('Are you sure you want to delete this post?')){
+      deleteDoc(doc(db,"posts",id))
+      if(post.data().image){
+        deleteObject(ref(storage,`posts/${id}/image`));
+      }
     }
   }
 
   return (
-    <div className="flex p-3 cursor-pointer border-b border-gray-200 pl-12">
+    <div className="flex p-3 cursor-pointer border-b border-gray-200">
     {/*user image*/}
-    <img className="h-11 w-11 rounded-full mr-4" src={comment?.userImg} alt="user-image" />
+    <img className="h-11 w-11 rounded-full mr-4" src={post?.data()?.userImg} alt="user-image" />
 
     {/*right side*/}
     <div className="flex-1">
@@ -58,11 +73,11 @@ export default function Post({comment, commentId, originalPostId }) {
       {/*Header*/}
       <div className="flex items-center justify-between">
         {/*post user info*/}
-        <div className="flex items-center space-x-1 whitespace-nowrap ">
-          <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline">{comment?.name}</h4>
-          <span className="text-sm sm:text-[15px]">@{comment?.username} - </span>
+        <div className="flex items-center space-x-1 whitespace-nowrap">
+          <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline">{post?.data()?.name}</h4>
+          <span className="text-sm sm:text-[15px]">@{post?.data()?.username} - </span>
           <span className="text-sm sm:text-[15px] hover:underline">
-            <Moment fromNow>{comment?.timestamp?.toDate()}</Moment>
+            <Moment fromNow>{post?.data().timestamp?.toDate()}</Moment>
           </span>
         </div>
         {/*dot icon*/}
@@ -72,8 +87,11 @@ export default function Post({comment, commentId, originalPostId }) {
       {/*Post text*/}
 
       <p className="text-gray-800 text-[15px] sm:text-[16px] mb-2">
-        {comment?.comment}
+        {post?.data()?.text}
       </p>
+
+      {/*post image*/}
+      <img className="rounded-2xl mr-2 object-contain" alt="error" src={post?.data()?.image}/>
 
       {/*icons*/}
       <div className="flex justify-between text-gray-500 p-2">
@@ -83,25 +101,28 @@ export default function Post({comment, commentId, originalPostId }) {
           if(!session){
             signIn();
           }else{
-          setPostID(oroginalPostId);
+          setPostID(id);
           setOpen(!open);
           }
         }}
           className="h-9 w-9 hoverEffect p-2 hover:text-sky-500 hover:bg-sky-100"/>
 
+{comments.length > 0 && (
+              <span className="text-sm">{comments.length}</span>
+            )}
           </div>
 
-        {session?.user.uid === comment?.userId && (
-            <TrashIcon onClick={deleteComment} className="h-9 w-9 hoverEffect p-2 hover:text-red-600 hover:bg-red-100"/> 
+        {session?.user.uid === post?.data().id && (
+            <TrashIcon onClick={deletePost} className="h-9 w-9 hoverEffect p-2 hover:text-red-600 hover:bg-red-100"/> 
         )}
         
         
         <div className="flex items-center">
             {hasLiked ? (<HeartIconFilled 
-              onClick={likeComment} className="h-9 w-9 hoverEffect p-2 text-red-600 hover:bg-red-100"/>
+              onClick={likePost} className="h-9 w-9 hoverEffect p-2 text-red-600 hover:bg-red-100"/>
             ): (
               <HeartIcon
-                onClick={likeComment} className="h-9 w-9 hoverEffect p-2 hover:text-red-600 hover:bg-red-100"/>
+                onClick={likePost} className="h-9 w-9 hoverEffect p-2 hover:text-red-600 hover:bg-red-100"/>
             )}
             {
               likes.length>0 && (

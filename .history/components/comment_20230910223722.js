@@ -48,7 +48,7 @@ export default function Post({comment, commentId, originalPostId }) {
   }
 
   return (
-    <div className="flex p-3 cursor-pointer border-b border-gray-200 pl-12">
+    <div className="flex p-3 cursor-pointer border-b border-gray-200 pl-20 object-contain">
     {/*user image*/}
     <img className="h-11 w-11 rounded-full mr-4" src={comment?.userImg} alt="user-image" />
 
@@ -58,7 +58,7 @@ export default function Post({comment, commentId, originalPostId }) {
       {/*Header*/}
       <div className="flex items-center justify-between">
         {/*post user info*/}
-        <div className="flex items-center space-x-1 whitespace-nowrap ">
+        <div className="flex items-center space-x-1 whitespace-nowrap">
           <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline">{comment?.name}</h4>
           <span className="text-sm sm:text-[15px]">@{comment?.username} - </span>
           <span className="text-sm sm:text-[15px] hover:underline">
@@ -91,7 +91,7 @@ export default function Post({comment, commentId, originalPostId }) {
 
           </div>
 
-        {session?.user.uid === comment?.userId && (
+        {session?.user.uid === comment?.id && (
             <TrashIcon onClick={deleteComment} className="h-9 w-9 hoverEffect p-2 hover:text-red-600 hover:bg-red-100"/> 
         )}
         

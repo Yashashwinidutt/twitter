@@ -48,7 +48,7 @@ export default function Post({comment, commentId, originalPostId }) {
   }
 
   return (
-    <div className="flex p-3 cursor-pointer border-b border-gray-200 pl-12">
+    <div className="flex p-3 cursor-pointer border-b border-gray-200 pl-15 ">
     {/*user image*/}
     <img className="h-11 w-11 rounded-full mr-4" src={comment?.userImg} alt="user-image" />
 
@@ -91,7 +91,7 @@ export default function Post({comment, commentId, originalPostId }) {
 
           </div>
 
-        {session?.user.uid === comment?.userId && (
+        {session?.user.uid === comment?.id && (
             <TrashIcon onClick={deleteComment} className="h-9 w-9 hoverEffect p-2 hover:text-red-600 hover:bg-red-100"/> 
         )}
         
